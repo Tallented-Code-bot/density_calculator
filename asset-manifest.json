@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/density_calculator/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/density_calculator/static/js/main.68876958.chunk.js",
+    "main.js.map": "/density_calculator/static/js/main.68876958.chunk.js.map",
+    "runtime-main.js": "/density_calculator/static/js/runtime-main.d781167c.js",
+    "runtime-main.js.map": "/density_calculator/static/js/runtime-main.d781167c.js.map",
+    "static/js/2.56979292.chunk.js": "/density_calculator/static/js/2.56979292.chunk.js",
+    "static/js/2.56979292.chunk.js.map": "/density_calculator/static/js/2.56979292.chunk.js.map",
+    "static/js/3.ac09b96d.chunk.js": "/density_calculator/static/js/3.ac09b96d.chunk.js",
+    "static/js/3.ac09b96d.chunk.js.map": "/density_calculator/static/js/3.ac09b96d.chunk.js.map",
+    "index.html": "/density_calculator/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/density_calculator/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.56979292.chunk.js.LICENSE.txt": "/density_calculator/static/js/2.56979292.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/density_calculator/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d781167c.js",
+    "static/js/2.56979292.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.68876958.chunk.js"
+  ]
+}
