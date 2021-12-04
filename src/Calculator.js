@@ -1,0 +1,117 @@
+import React from "react"
+import {useState,useEffect} from "react"
+
+
+const Calculator=()=>{
+  const [mass,setMass]=useState(0); 
+  const [volume,setVolume]=useState(0)
+  const [density,setDensity]=useState(0)
+
+  const [lastEdited,setLastEdited]=useState(["mass","volume","density"]);
+
+  const editMass=(e)=>{
+    setMass(e.target.value);
+    //updateLastEdited("mass");
+    //calculateValues()
+  }
+
+  const editVolume=(e)=>{
+    setVolume(e.target.value);
+    //updateLastEdited("volume");
+    //calculateValues()
+  }
+
+  const editDensity=(e)=>{
+    setDensity(e.target.value);
+  }
+
+  
+  useEffect(()=>{
+    updateLastEdited("density");
+    calculateValues()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[density])
+
+
+  useEffect(()=>{
+    updateLastEdited("mass");
+    calculateValues();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[mass])
+
+
+  useEffect(()=>{
+    updateLastEdited("volume");
+    calculateValues();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[volume])
+
+
+
+
+
+
+  function calculateValues(){
+    //extract input
+    let massNum=extractNumbers(mass)
+    let volumeNum=extractNumbers(volume)
+    let densityNum=extractNumbers(volume)
+
+    switch(lastEdited[0]){
+      default: return;
+      case "density": setDensity(massNum/volumeNum);break; 
+      case "mass": setMass(densityNum*volumeNum);break;
+      case "volume":setVolume(massNum/densityNum);break;
+    }
+
+
+    setDensity(massNum+volumeNum);
+
+
+  }
+
+
+  const extractNumbers=(input)=>{
+    //this is a simple function
+    //to extract numbers from a text input
+
+    let parsed=parseFloat(input)
+    if(isNaN(parsed)){
+      parsed=0
+    }
+
+    return parsed
+  }
+
+
+  const updateLastEdited=(input)=>{
+    //if the last item of the list is alreay
+    //what we want it to be, return
+    if(lastEdited.at(-1)===input)return
+
+    //get the list so we can edit it
+    let lastEditedTemp=lastEdited;
+    //push the input to the end
+    lastEditedTemp.push(input) 
+    //if the list is too long, make it shorter
+    if (lastEditedTemp.length>3){
+      lastEditedTemp.shift()
+    }
+    //set the real list from the temp list
+    setLastEdited(lastEditedTemp)
+  }
+
+  return (
+    <form>
+      <label>Mass:</label>
+      <input type="text" value={mass} onChange={editMass}/><br/>
+      <label>Volume:</label>
+      <input type="text" value={volume} onChange={editVolume}/><br/>
+      <label>Density:</label>
+      <input type="text" value={density} onChange={editDensity}/><br/>
+    </form>
+  )
+  
+}
+
+export default Calculator
