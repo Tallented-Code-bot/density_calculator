@@ -119,17 +119,21 @@ const Calculator=()=>{
   }
 
   return (
+    //todo
+    //Add contenteditable things
+    //https://stackoverflow.com/questions/22677931/react-js-onchange-event-for-contenteditable
+    //this should be useful
     <form onSubmit={(e)=>{e.preventDefault();}}>
       <label>Mass:</label>
-      <input type="text" value={mass} onChange={editMass}/>
+      <p contentEditable type="text" value={mass} onChange={editMass}/>
       <button onClick={calculateMass}>Calculate</button><br/>
 
       <label>Volume:</label>
-      <input type="text" value={volume} onChange={editVolume}/>
+      <p contentEditable type="text" value={volume} onChange={editVolume}/>
       <button onClick={calculateVolume}>Calculate</button><br/>
 
       <label>Density:</label>
-      <input type="text" value={density} onChange={editDensity}/>
+      <p contentEditable type="text" value={density} onChange={editDensity}/>
       <button onClick={calculateDensity}>Calculate</button><br/>
     </form>
   )
