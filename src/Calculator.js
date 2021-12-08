@@ -26,25 +26,25 @@ const Calculator=()=>{
   }
 
   
-  useEffect(()=>{
-    updateLastEdited("density");
-    calculateValues()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[density])
+  // useEffect(()=>{
+  //   updateLastEdited("density");
+  //   calculateValues()
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // },[density])
 
 
-  useEffect(()=>{
-    updateLastEdited("mass");
-    calculateValues();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[mass])
+  // useEffect(()=>{
+  //   updateLastEdited("mass");
+  //   calculateValues();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // },[mass])
 
 
-  useEffect(()=>{
-    updateLastEdited("volume");
-    calculateValues();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[volume])
+  // useEffect(()=>{
+  //   updateLastEdited("volume");
+  //   calculateValues();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // },[volume])
 
 
 
@@ -68,6 +68,23 @@ const Calculator=()=>{
     setDensity(massNum+volumeNum);
 
 
+  }
+
+
+  function calculateDensity(){
+    // mass/volume=density
+    setDensity(extractNumbers(mass)/extractNumbers(volume));
+  }
+
+  function calculateVolume(){
+    // mass/density=volume
+    setVolume(extractNumbers(mass)/extractNumbers(density));
+  }
+
+
+  function calculateMass(){
+    //mass=volume*density
+    setMass(extractNumbers(volume)*extractNumbers(density));
   }
 
 
@@ -102,13 +119,18 @@ const Calculator=()=>{
   }
 
   return (
-    <form>
+    <form onSubmit={(e)=>{e.preventDefault();}}>
       <label>Mass:</label>
-      <input type="text" value={mass} onChange={editMass}/><br/>
+      <input type="text" value={mass} onChange={editMass}/>
+      <button onClick={calculateMass}>Calculate</button><br/>
+
       <label>Volume:</label>
-      <input type="text" value={volume} onChange={editVolume}/><br/>
+      <input type="text" value={volume} onChange={editVolume}/>
+      <button onClick={calculateVolume}>Calculate</button><br/>
+
       <label>Density:</label>
-      <input type="text" value={density} onChange={editDensity}/><br/>
+      <input type="text" value={density} onChange={editDensity}/>
+      <button onClick={calculateDensity}>Calculate</button><br/>
     </form>
   )
   
