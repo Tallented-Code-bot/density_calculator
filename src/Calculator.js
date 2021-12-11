@@ -41,6 +41,13 @@ const Calculator=()=>{
   }
 
 
+  function convertDensity(massInput,volumeInput,massInUnit,volumeInUnit,massOutUnit,volumeOutUnit){
+    let convertedMass=convertMass(massInput,massInUnit,massOutUnit);
+    let convertedVolume=convertVolume(volumeInput,volumeInUnit,volumeOutUnit);
+    return convertedMass/convertedVolume;
+  }
+
+
 
 
   const editMass=(e)=>{
@@ -117,13 +124,23 @@ const Calculator=()=>{
   function calculateVolume(){
     // mass/density=volume
 
-    setVolume(extractNumbers(mass)/extractNumbers(density));
+    //let massInUnits=convertMass(extractNumbers(mass),massUnit);
+    //convert the density to the proper units
+    let densityInUnits=convertDensity(extractNumbers(density),1,densityMassUnit,densityVolumeUnit,massUnit,volumeUnit);
+
+    setVolume(extractNumbers(mass)/densityInUnits);
   }
 
 
   function calculateMass(){
     //mass=volume*density
-    setMass(extractNumbers(volume)*extractNumbers(density));
+    //
+
+    let densityInUnits=convertDensity(extractNumbers(density),1,densityMassUnit,densityVolumeUnit,massUnit,volumeUnit);
+
+
+
+    setMass(extractNumbers(volume)*densityInUnits);
   }
 
 
