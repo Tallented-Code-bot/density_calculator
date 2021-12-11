@@ -1,7 +1,5 @@
 import React from "react"
 import {useState,useEffect} from "react"
-import MassSelector from "./MassSelector";
-import VolumeSelector from "./VolumeSelector";
 
 
 const Calculator=()=>{
