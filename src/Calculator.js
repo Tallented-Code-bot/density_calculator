@@ -159,53 +159,57 @@ const Calculator=()=>{
 
   return (
     <form onSubmit={(e)=>{e.preventDefault();}}>
-      <label>Mass:</label>
-      <input type="text" value={mass} onChange={editMass}/>
+      <div className="inputLine">
+        <label>Mass:</label>
+        <input type="text" value={mass} onChange={editMass}/>
 
-      <select value={massUnit} onChange={(e)=>{setMassUnit(e.target.value)}}> 
-        <option value="kg">kg</option>
-        <option value="g">g</option>
-        <option value="mg">mg</option>
-      </select>
+        <select value={massUnit} onChange={(e)=>{setMassUnit(e.target.value)}}> 
+          <option value="kg">kg</option>
+          <option value="g">g</option>
+          <option value="mg">mg</option>
+        </select>
 
-      <button onClick={calculateMass}>Calculate</button><br/>
-
-
-
-
-      <label>Volume:</label>
-      <input type="text" value={volume} onChange={editVolume}/>
-      
-      <select value={volumeUnit} onChange={(e)=>{setVolumeUnit(e.target.value)}}>
-        <option value="mL">mL</option>
-        <option value="L">L</option>
-        <option value="cm3">cm&sup3;</option>
-        <option value="m3">m&sup3;</option>
-      </select>
-
-      <button onClick={calculateVolume}>Calculate</button><br/>
+        <button onClick={calculateMass}>Calculate</button><br/>
+      </div>
 
 
 
+    <div className="inputLine">
+        <label>Volume:</label>
+        <input type="text" value={volume} onChange={editVolume}/>
+        
+        <select value={volumeUnit} onChange={(e)=>{setVolumeUnit(e.target.value)}}>
+          <option value="mL">mL</option>
+          <option value="L">L</option>
+          <option value="cm3">cm&sup3;</option>
+          <option value="m3">m&sup3;</option>
+        </select>
 
-      <label>Density:</label>
-      <input type="text" value={density} onChange={editDensity}/>
-      <select value={densityMassUnit} onChange={(e)=>{setDensityMassUnit(e.target.value)}}>
-        <option value="kg">kg</option>
-        <option value="g">g</option>
-        <option value="mg">mg</option>
-      </select>/
-      
-
-      <select value={densityVolumeUnit} onChange={(e)=>{setDensityVolumeUnit(e.target.value)}}>
-        <option value="mL">mL</option>
-        <option value="L">L</option>
-        <option value="cm3">cm&sup3;</option>
-        <option value="m3">m&sup3;</option>
-      </select>
+        <button onClick={calculateVolume}>Calculate</button><br/>
+    </div>
 
 
-      <button onClick={calculateDensity}>Calculate</button><br/>
+
+      <div className="inputLine">
+        <label>Density:</label>
+        <input type="text" value={density} onChange={editDensity}/>
+        <select value={densityMassUnit} onChange={(e)=>{setDensityMassUnit(e.target.value)}}>
+          <option value="kg">kg</option>
+          <option value="g">g</option>
+          <option value="mg">mg</option>
+        </select>/
+        
+
+        <select value={densityVolumeUnit} onChange={(e)=>{setDensityVolumeUnit(e.target.value)}}>
+          <option value="mL">mL</option>
+          <option value="L">L</option>
+          <option value="cm3">cm&sup3;</option>
+          <option value="m3">m&sup3;</option>
+        </select>
+
+
+        <button onClick={calculateDensity}>Calculate</button><br/>
+      </div>
 
 
     </form>
