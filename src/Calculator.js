@@ -49,6 +49,22 @@ const Calculator=()=>{
 
 
 
+  function findSolidType(){
+    let densityWithUnits=convertDensity(extractNumbers(mass),extractNumbers(volume),densityMassUnit,densityVolumeUnit,"g","mL")
+    console.log(densityWithUnits);
+    if(densityWithUnits>2.5){
+      return "inorganic solid";
+    }
+    else if(densityWithUnits>1){
+      return "organic solid";
+    }
+    else{
+      return "unknown type of solid";
+    }
+  }
+
+
+
 
   const editMass=(e)=>{
     setMass(e.target.value);
@@ -226,7 +242,10 @@ const Calculator=()=>{
 
 
         <button onClick={calculateDensity}>Calculate</button><br/>
+
       </div>
+      <p className="caption">This substance is most likely an {findSolidType()}</p>
+
 
 
     </form>
