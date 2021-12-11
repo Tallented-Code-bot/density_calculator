@@ -1,5 +1,6 @@
-import React from "react"
-import {useState,useEffect} from "react"
+import React from "react";
+import {useState,useEffect} from "react";
+import EditableElement from "./EditableElement";
 
 
 const Calculator=()=>{
@@ -9,20 +10,20 @@ const Calculator=()=>{
 
   const [lastEdited,setLastEdited]=useState(["mass","volume","density"]);
 
-  const editMass=(e)=>{
-    setMass(e.target.value);
+  const editMass=(value)=>{
+    setMass(value);
     //updateLastEdited("mass");
     //calculateValues()
   }
 
-  const editVolume=(e)=>{
-    setVolume(e.target.value);
+  const editVolume=(value)=>{
+    setVolume(value);
     //updateLastEdited("volume");
     //calculateValues()
   }
 
-  const editDensity=(e)=>{
-    setDensity(e.target.value);
+  const editDensity=(value)=>{
+    setDensity(value);
   }
 
   
@@ -124,16 +125,40 @@ const Calculator=()=>{
     //https://stackoverflow.com/questions/22677931/react-js-onchange-event-for-contenteditable
     //this should be useful
     <form onSubmit={(e)=>{e.preventDefault();}}>
+
+
+
       <label>Mass:</label>
-      <p contentEditable type="text" value={mass} onChange={editMass}/>
+      {/*<p  value={mass} onChange={editMass}/>*/}
+      <EditableElement onChange={editMass}>
+        <div style={{outline:"solid 2px black"}}>
+          <span>{mass}</span>
+        </div>
+      </EditableElement>
+      <TextInput>
       <button onClick={calculateMass}>Calculate</button><br/>
 
+
+
+
+
       <label>Volume:</label>
-      <p contentEditable type="text" value={volume} onChange={editVolume}/>
+      {/*<p contentEditable type="text" value={volume} onChange={editVolume}/>*/}
+      <EditableElement onChange={editVolume}>
+        <div style={{outline:"solid 2px black"}}>
+          <span>{volume}</span>
+        </div>
+      </EditableElement>
+
       <button onClick={calculateVolume}>Calculate</button><br/>
 
       <label>Density:</label>
-      <p contentEditable type="text" value={density} onChange={editDensity}/>
+      {/*<p contentEditable type="text" value={density} onChange={editDensity}/>*/}
+      <EditableElement onChange={editDensity}>
+        <div style={{outline:"solid 2px black"}}>
+          <span>{density}</span>
+        </div>
+      </EditableElement>
       <button onClick={calculateDensity}>Calculate</button><br/>
     </form>
   )
