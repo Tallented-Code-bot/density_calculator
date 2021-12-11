@@ -1,5 +1,7 @@
 import React from "react"
 import {useState,useEffect} from "react"
+import MassSelector from "./MassSelector";
+import VolumeSelector from "./VolumeSelector";
 
 
 const Calculator=()=>{
@@ -7,7 +9,39 @@ const Calculator=()=>{
   const [volume,setVolume]=useState(0)
   const [density,setDensity]=useState(0)
 
+  const [massUnit,setMassUnit]=useState("g");
+  const [volumeUnit,setVolumeUnit]=useState("mL");
+  const [densityMassUnit,setDensityMassUnit]=useState("g");
+  const [densityVolumeUnit,setDensityVolumeUnit]=useState("mL");
+
+
   const [lastEdited,setLastEdited]=useState(["mass","volume","density"]);
+
+
+  function convertMass(input,inUnit,outUnit){
+    //each unit in mg
+    let units={kg:1000000,g:1000,mg:1};
+
+    //convert to mg
+    let inMg=input*units[inUnit]; 
+
+    //convert from mg to output unit
+    let output=inMg/units[outUnit];
+    return output;
+  }
+
+  function convertVolume(input,inUnit,outUnit){
+    //all in mL
+    let units={mL:1,cm3:1,m3:1000000,L:1000};
+
+    let inMl=input*units[inUnit];
+
+    let output=inMl/units[outUnit];
+    return output;
+  }
+
+
+
 
   const editMass=(e)=>{
     setMass(e.target.value);
@@ -73,11 +107,16 @@ const Calculator=()=>{
 
   function calculateDensity(){
     // mass/volume=density
-    setDensity(extractNumbers(mass)/extractNumbers(volume));
+    
+    //get mass in proper units
+    let massInUnits=convertMass(extractNumbers(mass),massUnit,densityMassUnit);
+    let volumeInUnits=convertVolume(extractNumbers(volume),volumeUnit,densityVolumeUnit);
+    setDensity(massInUnits/volumeInUnits);
   }
 
   function calculateVolume(){
     // mass/density=volume
+
     setVolume(extractNumbers(mass)/extractNumbers(density));
   }
 
@@ -122,15 +161,53 @@ const Calculator=()=>{
     <form onSubmit={(e)=>{e.preventDefault();}}>
       <label>Mass:</label>
       <input type="text" value={mass} onChange={editMass}/>
+
+      <select value={massUnit} onChange={(e)=>{setMassUnit(e.target.value)}}> 
+        <option value="kg">kg</option>
+        <option value="g">g</option>
+        <option value="mg">mg</option>
+      </select>
+
       <button onClick={calculateMass}>Calculate</button><br/>
+
+
+
 
       <label>Volume:</label>
       <input type="text" value={volume} onChange={editVolume}/>
+      
+      <select value={volumeUnit} onChange={(e)=>{setVolumeUnit(e.target.value)}}>
+        <option value="mL">mL</option>
+        <option value="L">L</option>
+        <option value="cm3">cm&sup3;</option>
+        <option value="m3">m&sup3;</option>
+      </select>
+
       <button onClick={calculateVolume}>Calculate</button><br/>
+
+
+
 
       <label>Density:</label>
       <input type="text" value={density} onChange={editDensity}/>
+      <select value={densityMassUnit} onChange={(e)=>{setDensityMassUnit(e.target.value)}}>
+        <option value="kg">kg</option>
+        <option value="g">g</option>
+        <option value="mg">mg</option>
+      </select>/
+      
+
+      <select value={densityVolumeUnit} onChange={(e)=>{setDensityVolumeUnit(e.target.value)}}>
+        <option value="mL">mL</option>
+        <option value="L">L</option>
+        <option value="cm3">cm&sup3;</option>
+        <option value="m3">m&sup3;</option>
+      </select>
+
+
       <button onClick={calculateDensity}>Calculate</button><br/>
+
+
     </form>
   )
   
