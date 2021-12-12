@@ -1,5 +1,5 @@
 import React from "react"
-import {useState,useEffect} from "react"
+import {useState/*,useEffect*/} from "react"
 
 
 const Calculator=()=>{
@@ -13,7 +13,7 @@ const Calculator=()=>{
   const [densityVolumeUnit,setDensityVolumeUnit]=useState("mL");
 
 
-  const [lastEdited,setLastEdited]=useState(["mass","volume","density"]);
+  //const [lastEdited,setLastEdited]=useState(["mass","volume","density"]);
 
 
   function convertMass(input,inUnit,outUnit){
@@ -106,24 +106,6 @@ const Calculator=()=>{
 
 
 
-  function calculateValues(){
-    //extract input
-    let massNum=extractNumbers(mass)
-    let volumeNum=extractNumbers(volume)
-    let densityNum=extractNumbers(volume)
-
-    switch(lastEdited[0]){
-      default: return;
-      case "density": setDensity(massNum/volumeNum);break; 
-      case "mass": setMass(densityNum*volumeNum);break;
-      case "volume":setVolume(massNum/densityNum);break;
-    }
-
-
-    setDensity(massNum+volumeNum);
-
-
-  }
 
 
   function calculateDensity(){
@@ -171,22 +153,22 @@ const Calculator=()=>{
   }
 
 
-  const updateLastEdited=(input)=>{
-    //if the last item of the list is alreay
-    //what we want it to be, return
-    if(lastEdited.at(-1)===input)return
+  //const updateLastEdited=(input)=>{
+    ////if the last item of the list is alreay
+    ////what we want it to be, return
+    //if(lastEdited.at(-1)===input)return
 
-    //get the list so we can edit it
-    let lastEditedTemp=lastEdited;
-    //push the input to the end
-    lastEditedTemp.push(input) 
-    //if the list is too long, make it shorter
-    if (lastEditedTemp.length>3){
-      lastEditedTemp.shift()
-    }
-    //set the real list from the temp list
-    setLastEdited(lastEditedTemp)
-  }
+    ////get the list so we can edit it
+    //let lastEditedTemp=lastEdited;
+    ////push the input to the end
+    //lastEditedTemp.push(input) 
+    ////if the list is too long, make it shorter
+    //if (lastEditedTemp.length>3){
+      //lastEditedTemp.shift()
+    //}
+    ////set the real list from the temp list
+    //setLastEdited(lastEditedTemp)
+  //}
 
   return (
     <form onSubmit={(e)=>{e.preventDefault();}}>
