@@ -242,7 +242,7 @@ const Calculator=()=>{
         <button onClick={calculateDensity}>Calculate</button><br/>
 
       </div>
-      <p className="caption">This substance is most likely an {findSolidType()}</p>
+      <p className="caption">This substance is most likely an <b>{findSolidType()}</b></p>
 
 
 
